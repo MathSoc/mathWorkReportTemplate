@@ -1,0 +1,247 @@
+\ProvidesPackage{formatting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Required Packages
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[hmargin=2.5cm, vmargin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{tocloft}
+\usepackage{datetime} 
+\usepackage{titlesec}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\usepackage{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% URL Formatting
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\urlstyle{same}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Dates
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newdateformat{noDay}{\monthname, \THEYEAR}
+\newdateformat{Letter}{\monthname \, \THEDAY, \THEYEAR}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Title page formatting
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% "University of Waterloo" must be bold
+% "University of Waterloo" must be in all capital letters
+% Faculty must be written out correctly in full (not a plan name)
+% Report title must be bold (italics is acceptable)
+% Employer’s name and location must be included 
+% Full name must be included
+% ID number must be included 
+% All text must be centred
+% All text must be single-spaced
+% Images, colours or borders must not be included
+% https://uwaterloo.ca/math/sites/ca.math/files/uploads/files/title-page.pdf
+
+\newcommand{\FirstPage}{
+    \begin{titlepage}
+        \begin{center}
+           \vskip 50pt
+            \textbf{\scshape UNIVERSITY OF WATERLOO} \\
+            Faculty of Mathematics
+            \vskip 130pt
+            
+            \textbf{\WTT} 
+            \vskip 130pt
+        
+            \compName \\ 
+            \compCity, \compProvince
+            \vskip 130pt
+
+            \name  \\
+            \term Computer Science \\
+            ID \studentNumber \\
+            \noDay\today
+        \end{center}
+    \end{titlepage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Letter Head Formatting
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Must contain sender’s address with full province (Ontario)
+% Date must be in written out in full
+% Date must be consistent with date on the Title Page
+% Must include a Statement of Endorsement in the final paragraph
+% Must be left justified
+
+\newcommand{\LetterHead}{
+    \singlespacing
+    \pagestyle{empty}
+ 
+    \yourStreet\\
+    \yourCity, \yourProvince\\
+    \yourPostalCode\\
+    
+    \Letter\today\\
+    
+    \supervisorsName\\
+    \supervisorsRole\\
+    \compName\\
+    \compStreet\\
+    \compCity, \compProvince\\
+    \compPostalCode\\
+    
+    Dear \supervisorsName, 
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Page Formatting
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Spacing and Paragraphs
+% Report body must be double-spaced
+% Indentation and spacing between paragraphs must be consistent
+
+% Headings and Section Numbers (H)
+% Headings must be emphasized using bold, not italicized or underlined
+% Headings must be consistent with Table of Contents
+
+% Format (F) 
+% Fonts and Margins (M)
+% Entire report must be written in 12pt font
+% Ensure margins are consistent on all sides in all sections
+
+% Page Numbers (PN)
+% No page number appears on the Title Page, it is considered page “i”
+% No page number appears on the Letter of Submittal, it is not considered a part of the report itself
+% Table of Contents must have Roman numeral 'ii' centred at the bottom
+% If included, List of Table and Figures must have Roman numeral 'iii' centred at the bottom
+% Summary must have Roman numeral 'iv' (or 'iii' if no List of Tables and Figures included) centred at the bottom
+% The page with the introduction must be numbered '1' and the others must follow in order
+% Arabic numerals (1, 2, 3, etc.) must be right-aligned at the bottom
+% Page numbers in report must match those in the Table of Contents
+
+
+\newcommand{\pageFormatting}{
+    \doublespacing
+    \pagenumbering{roman}
+    \setcounter{page}{2}
+    \pagestyle{fancy}
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \fancypagestyle{plain}{
+        \fancyhf{}
+        \fancyfoot[C]{\thepage}
+    }
+    % removes default line
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% No indentation
+\setlength{\parindent}{0pt}
+
+% Spacing between paragraphs 
+\setlength{\parskip}{1em}
+
+\newcommand{\formattingForRestOfReport}{
+    \newpage
+    \pagenumbering{arabic}
+    \fancyhf{}
+    \fancyfoot[R]{\thepage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Section Formatting
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Numbering
+\renewcommand*\thesection{ \normalsize \arabic{section}.0}
+\renewcommand*\thesubsection{\normalsize \arabic{section}.\arabic{subsection} \ }
+\renewcommand*\thesubsubsection{\normalsize \arabic{section}.\arabic{subsection}.\arabic{subsubsection} }
+
+
+% Sections without Numbers
+\newcommand{\sectionNoNumber}[1]{
+    \newpage
+    \phantomsection
+    \addcontentsline{toc}{section}{#1}
+    \section*{#1}
+}
+
+% Ensure that all headings are normalsize after getting penalized for this
+\titleformat*{\section}{\normalsize\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\titleformat*{\subsubsection}{\normalsize\bfseries}
+
+%https://tex.stackexchange.com/questions/53338/reducing-spacing-after-headings
+\titlespacing\section{0pt}{0pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{0pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{0pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Table of Contents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% "Table of Contents" must be bold
+% "Table of Contents" must be centred
+% Must include decimal numbers before appropriate headings
+% Major words in headings/subheadings must be capitalized
+% Subheadings must be indented
+% Page numbers must be right aligned
+% Must contain tab leaders
+% Must not include bold, italics, extras
+
+
+% Command that gets called
+\newcommand{\toc}{
+    \newpage
+    \pageFormatting 
+    \tableofcontents
+    \listoffigures
+}
+
+
+
+
+% Commands about toc, lot, lof headings
+\renewcommand{\cfttoctitlefont}{\hspace*{\fill}\Large\bfseries}
+\renewcommand{\cftaftertoctitle}{\hspace*{\fill}}
+\renewcommand{\cftlottitlefont}{\hspace*{\fill}\Large\bfseries}
+\renewcommand{\cftafterlottitle}{\hspace*{\fill}}
+\renewcommand{\cftloftitlefont}{\hspace*{\fill}\Large\bfseries}
+\renewcommand{\cftafterloftitle}{\hspace*{\fill}}
+
+% Indentation
+\renewcommand*\l@subsubsection{\@dottedtocline{1}{6.2em}{3.2em}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{3.1em}{3.2em}}
+\renewcommand*\l@section{\@dottedtocline{1}{0em}{3.2em}}
+
+% Ensure proper labeling
+\renewcommand{\contentsname}{\normalsize Table of Contents}
+\renewcommand{\listfigurename}{\normalsize List of Figures}
