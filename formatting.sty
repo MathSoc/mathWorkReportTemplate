@@ -17,6 +17,11 @@
 \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
 \usepackage{hyperref}
 
+% Ensures that quotes go 66 99
+\usepackage [english]{babel}
+\usepackage [autostyle, english = american]{csquotes}
+\MakeOuterQuote{"}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % URL Formatting
@@ -75,7 +80,7 @@
             \vskip 130pt
 
             \name  \\
-            \term Computer Science \\
+            \term \program \\
             ID \studentNumber \\
             \noDay\today
         \end{center}
