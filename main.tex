@@ -2,6 +2,23 @@
 
 \usepackage{formatting}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Citations setup:
+% This section is commented out in case you don't have the correct tools installed or if you want to handle citations differently.
+
+
+% This may not be *exactly* the correct citation style, I think it's an older version of APA than we are "supposed" to use.
+% However I also didn't even see anywhere in the rubric where it said to use APA, so I think the markers are checking if the citations look good enough rather than if you have exactly the right italics or quotes or whatnot.
+% \usepackage[backend=biber,style=apa]{biblatex}
+% \DeclareLanguageMapping{american}{american-apa}
+
+% Add your bibliography file(s) like this.
+% Zotero is an easy-to-use free program for collecting all of your references that can export into a LaTeX .bib file.
+% You can also just lookup LaTeX .bib format online if you want to create the files yourself, it's not that hard.
+% \addbibresource{References.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % Use https://uwaterloo.ca/math/current-undergraduates/co-op-information/work-report-guidelines/appendix-3-work-report-checklist to ensure you are meeting all the requirements
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -11,7 +28,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\newcommand{\term}{Current Term } % term that was most recently completed
+\newcommand{\term}{Current Term} % term that was most recently completed
 \newcommand{\program}{program/plan}
 \newcommand{\WTT}{Title of report}
 \newcommand{\name}{First Lastname}
@@ -82,7 +99,10 @@ INSERT SIGNATURE HERE
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\toc 
+\newpage
+\pageFormatting
+\tableofcontents
+\listoffigures % Delete this line if you have no figures
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -179,6 +199,9 @@ Recommendations are essentially speculative but should be brief and should follo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \sectionNoNumber{References}
+% If you are using biblatex to manage your citations, delete the above line and uncomment the two following lines:
+% \clearpage
+% \printbibliography
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
